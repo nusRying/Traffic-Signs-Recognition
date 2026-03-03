@@ -1,11 +1,7 @@
-"""
-src/model.py - Traffic Sign Recognition Model
-Loads and manages the pre-trained Keras model.
-"""
-
 import os
 import numpy as np
 import tensorflow as tf
+import keras
 
 # 43 GTSRB class names in order (class ID 0–42)
 CLASS_NAMES = [
@@ -62,7 +58,7 @@ def load_model():
     """Load the pre-trained Keras model."""
     if not os.path.exists(MODEL_PATH):
         raise FileNotFoundError(f"Model file not found at: {MODEL_PATH}")
-    model = tf.keras.models.load_model(MODEL_PATH)
+    model = keras.models.load_model(MODEL_PATH)
     return model
 
 
