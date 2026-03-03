@@ -51,7 +51,7 @@ CLASS_NAMES = [
 ]
 
 IMG_SIZE = (64, 64)
-MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "models", "traffic_signs_model.keras")
+MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "models", "traffic_signs_model.h5")
 
 
 def load_model():
@@ -71,10 +71,12 @@ def predict(model, image_array):
     Returns:
         (class_id, class_name, confidence)
     """
-    # Resize and normalize
-    img = tf.image.resize(image_array, IMG_SIZE)
-    img = tf.cast(img, tf.float32) / 255.0
-    img = tf.expand_dims(img, 0)  # Add batch dimension
+    # Resize and normalize using Keras ops for backend neutrality
+    from keras import ops
+    
+    img = ops.image.resize(image_array, IMG_SIZE)
+    img = ops.cast(img, dtype="float32") / 255.0
+    img = ops.expand_dims(img, axis=0)  # Add batch dimension
 
     predictions = model.predict(img, verbose=0)
     class_id = int(np.argmax(predictions[0]))

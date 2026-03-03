@@ -5,7 +5,6 @@ A dark-themed, glassmorphism-inspired web interface.
 
 import gradio as gr
 import numpy as np
-import tensorflow as tf
 import plotly.graph_objects as go
 from src.model import load_model, predict, CLASS_NAMES
 from src.utils import load_image_from_camera
@@ -21,14 +20,13 @@ def classify_image(image):
         return None, None
     
     # Preprocess and predict
-    # Gradio provides image as numpy array (usually RGB)
     class_id, class_name, confidence = predict(model, image)
     
     # Get all predictions for Top-5 Chart
-    # We need to run model.predict manually for all classes
-    img_resized = tf.image.resize(image, (64, 64))
-    img_norm = tf.cast(img_resized, tf.float32) / 255.0
-    img_batch = tf.expand_dims(img_norm, 0)
+    from keras import ops
+    img_resized = ops.image.resize(image, (64, 64))
+    img_norm = ops.cast(img_resized, dtype="float32") / 255.0
+    img_batch = ops.expand_dims(img_norm, axis=0)
     
     preds = model.predict(img_batch, verbose=0)[0]
     top_indices = np.argsort(preds)[-5:][::-1]
