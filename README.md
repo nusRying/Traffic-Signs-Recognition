@@ -1,42 +1,42 @@
 # 🚦 Traffic Sign Intelligence
 
-A professional-grade Traffic Sign Recognition system using Deep Learning (CNN) with 43-class classification, hardware-optimized inference, and a premium web dashboard.
+# 🚦 SignIntel: Real-Time Traffic Sign Intelligence
 
----
+A professional-grade Computer Vision system for real-time traffic sign recognition using a custom-reconstructed MobileNetV2 architecture.
 
-## ✨ Features
+![Dashboard Interface](https://cdn-icons-png.flaticon.com/512/3426/3426033.png)
 
-- **🎯 High Accuracy**: Trained on the GTSRB dataset, achieving >92% accuracy across 43 traffic sign categories.
-- **💎 Premium Dashboard**: High-fidelity Gradio web interface with **Glassmorphism** aesthetics and real-time Plotly confidence charts.
-- **⚡ Edge Optimized**: Quantized **TFLite** model (~5MB) for fast inference on mobile and Raspberry Pi devices.
-- **📊 Batch Processor**: Multi-threaded engine for processing large image directories with professional Excel/CSV reports.
-- **🎥 Live Detection**: Seamless real-time recognition via webcam.
+## 🛰️ Intelligence Control Center (v2.0)
 
----
+The project features a high-fidelity Streamlit dashboard with a dual-mode detection engine:
+
+- **📷 LIVE RADAR**: Real-time traffic sign capture and analysis via laptop camera sensors.
+- **📂 FILE INTAKE**: High-resolution telemetry analysis for uploaded image files.
+- **📊 NEURAL LOGITS**: Interactive Top-5 probability distribution visualization via Plotly.
+- **🧠 DETECT HISTORY**: Session-based history tracking for recent classifications.
+
+## 🛠️ Neural Architecture
+
+The system uses a custom-reconstructed MobileNetV2 backbone to bypass framework versioning conflicts (Keras 2/3 compatibility).
+
+- **Base Model**: MobileNetV2 (Pre-trained on ImageNet, fine-tuned).
+- **Custom Top**: GlobalAveragePooling2D → Dropout (0.2) → Dense (256, ReLU) → Dense (43, Softmax).
+- **Weights Logic**: Precision-mapped loading from low-level NumPy arrays (`.npz`).
+- **Preprocessing**: Optimized TensorFlow operations for sub-second inference latency.
 
 ## 🚀 Getting Started
 
-### 1. Installation
+### Prerequisites
 
-Ensure you have Python 3.10+ installed.
+- Python 3.8+
+- Conda (Recommended)
 
-```bash
+### Installation
+
+```powershell
+conda activate revival
 pip install -r requirements.txt
-pip install gradio plotly pandas openpyxl tqdm
-```
-
-### 2. Launch the Premium Dashboard
-
-Experience the high-fidelity web interface:
-
-```bash
-python gradio_app.py
-```
-
-### 3. Run Real-Time Webcam Detection
-
-```bash
-python app.py
+streamlit run streamlit_app.py
 ```
 
 ### 4. High-Performance Batch Processing
