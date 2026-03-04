@@ -99,10 +99,10 @@ ipython_config.py
 #pdm.lock
 
 # runtime package data
-#   These are usually too large for git.
-data/
+# These are usually too large for git.
+# data/
 # models/
-#   The trained model (28MB) is fine, but if you have larger models, keep them out.
+data/**/*.zip
 
 # Environments
 .env

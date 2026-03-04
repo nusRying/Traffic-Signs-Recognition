@@ -24,6 +24,13 @@ The system uses a custom-reconstructed MobileNetV2 backbone to bypass framework 
 - **Weights Logic**: Precision-mapped loading from low-level NumPy arrays (`.npz`).
 - **Preprocessing**: Optimized TensorFlow operations for sub-second inference latency.
 
+## 📁 Project Structure & Data
+
+To provide a complete out-of-the-box experience, this repository includes:
+
+- **`data/`**: Extracted GTSRB images (Training/Test sets). Note: Large `.zip` archives are excluded to respect GitHub's file limits.
+- **`models/`**: Complete set of trained models and weight files.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
